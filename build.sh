@@ -89,8 +89,8 @@ elif [[ $ui == true  ]] && [[ $profile == *mt7981* ]]; then
 	else
 		cp $base/glinet/pkg_config/gl_pkg_config_mt7981_mt3000.mk $base/glinet/mt7981/gl_pkg_config.mk
 	fi
-	make -j1 GL_PKGDIR=$base/glinet/mt7981/ V=s
+	make -j$(expr $(nproc) + 1) GL_PKGDIR=$base/glinet/mt7981/ V=s
 else
-	make -j1  V=s
+	make -j$(expr $(nproc) + 1)  V=s
 fi
 
