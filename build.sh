@@ -54,6 +54,11 @@ else
 fi
 cd ~/openwrt
 
+echo "开始啦"
+
+git clone https://github.com/gl-inet/glinet4.x.git $base/glinet
+cp $base/glinet/pkg_config/glinet_depends_mt2500.yml   ./profiles/glinet_depends.yml
+echo "代码拉下来了.."
 
 if [[ $ui == true  ]] && [[ $profile == *wlan_ap* ]]; then 
 	./scripts/gen_config.py $profile glinet_depends glinet_nas custom
@@ -69,11 +74,7 @@ fi
 rm -rf feeds/packages/lang/golang
 svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
 
-echo "开始啦"
 
-git clone https://github.com/gl-inet/glinet4.x.git $base/glinet
-
-echo "代码拉下来了.."
 
 ./scripts/feeds update -a 
 ./scripts/feeds install -a
