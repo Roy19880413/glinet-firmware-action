@@ -69,10 +69,14 @@ fi
 rm -rf feeds/packages/lang/golang
 svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
 
+echo "开始啦"
+
 git clone https://github.com/gl-inet/glinet4.x.git $base/glinet
 ./scripts/feeds update -a 
 ./scripts/feeds install -a
 make defconfig
+
+echo "结束啦"
 
 if [[ $ui == true  ]] && [[ $profile == *wlan_ap* ]]; then 
 	make -j$(expr $(nproc) + 1) GL_PKGDIR=$base/glinet/ipq60xx/ V=s
